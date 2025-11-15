@@ -1,18 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ASSIGNMENT 4 – Letizia Dell'Oro</title>
 
-    <title>Sketch</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css?v=10">
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- p5 (librerie) -->
+  <script src="libraries/p5.min.js"></script>
+  <script src="libraries/p5.sound.min.js"></script>
 
-    <script src="libraries/p5.min.js"></script>
-    <script src="libraries/p5.sound.min.js"></script>
-  </head>
+  <!-- Sketch -->
+  <script defer src="sketch.js?v=10"></script>
+</head>
+<body>
 
-  <body>
-    <script src="sketch.js"></script>
-  </body>
+  <!-- intestazione pagina -->
+  <header id="top">
+    <div class="row meta">
+      <div class="left">Letizia Dell'Oro</div>
+      <div class="right">Laboratorio di Computer Grafica per l’Information Design / A.A. 2025-2026</div>
+    </div>
+
+    <h1>ASSIGNMENT 3 – UNA VISIONE DI INSIEME</h1>
+    <h2>Crea un progetto che a partire da un dataset generi una visione di insieme in un unico sketch composta da un glifo per ogni dato.</h2>
+  </header>
+
+  <!-- sidebar fissa -->
+  <aside id="sidebar">
+
+    <!-- STATUS / GRADIENT -->
+    <section class="card">
+      <h3>VOLCANIC ACTIVITY - Status</h3>
+      <div class="gradient">
+        <span class="label left">LOW</span>
+        <span class="label right">HIGH</span>
+      </div>
+
+      <div>
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;
+                     background:#ffd100;vertical-align:middle;margin-right:6px;"></span>
+        <span class="muted">yellow: inactive</span>
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;
+                     background:#e42814;vertical-align:middle;margin-left:14px;margin-right:6px;"></span>
+        <span class="muted">red: active</span>
+      </div>
+
+      <div class="muted legend-caption">
+        Color encodes the activity epoch:
+        <dl class="epoch-glossary">
+          <dt>Pleistocene:</dt><dd>older</dd>
+          <dt>Holocene:</dt><dd>more recent</dd>
+          <dt>Historical:</dt><dd>documented eruptions</dd>
+        </dl>
+      </div>
+<br>
+      <p class="muted tiny">• Size = absolute elevation (|m|). Terrestrial and submarine volcanoes are scaled by magnitude, regardless of sign.</p>
+    <p class="muted tiny">• Transparency = last eruption</p>
+    </section>
+
+    <!-- **NUOVO: filtro per Type (dropdown)** -->
+    <section class="card" id="filter-card">
+      <h3>FILTER</h3>
+      <label class="muted tiny" for="typeFilter">Volcano Type</label>
+      <select id="typeFilter" class="select">
+        <!-- popolato da JS: "All" + lista tipi unici -->
+      </select>
+      <p class="muted tiny" id="filter-help">Select a type to show only those volcanoes.</p>
+    </section>
+
+    <!-- LEGENDA GLIFI (immutata nei contenuti) -->
+  <section class="card">
+  <h3>VOLCANO TYPES (GLYPHS)</h3>
+
+  <!-- AGGIUNTO: legenda generata da JS, uno per ogni Type reale -->
+  <ul id="legend-types" class="legend" style="margin-top:10px;"></ul>
+</section>
+  </aside>
+
+  <!-- contenitore del canvas -->
+  <main id="canvas-holder"></main>
+
+  <!-- tooltip HTML -->
+  <div id="tip" class="tip" hidden></div>
+
+</body>
 </html>

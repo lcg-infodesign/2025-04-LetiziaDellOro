@@ -1,8 +1,94 @@
-html, body {
-  margin: 0;
-  padding: 0;
+/* ================= VARIABILI ================= */
+:root{
+  --side: 320px;
+  --gap: 24px;
+  --sidebarTop: 150px;
+  --canvasPadTop: 12px;
+  --bg:#0c0e10; --card:#15171c; --edge:#2a2f3a; --text:#f1f1f1; --muted:#b9bed1;
 }
 
-canvas {
-  display: block;
+/* ================= BASE ================= */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
 }
+
+/* ================= HEADER ================= */
+#top{padding:12px 16px 0}
+#top .row.meta{display:flex; gap:16px; font-size:13px; color:var(--muted)}
+#top .row.meta .left{font-weight:600}
+#top .row.meta .right{margin-left:auto; opacity:.9}
+h1{margin:8px 0 4px; font-size:26px; letter-spacing:.2px}
+h2{margin:0 0 6px; font-size:15px; font-weight:600}
+
+/* ================= SIDEBAR ================= */
+#sidebar{
+  position:fixed; left:0; top:var(--sidebarTop); bottom:16px;
+  width:var(--side); padding:16px; overflow:auto;
+}
+.card{
+  background:var(--card); border:1px solid var(--edge);
+  border-radius:10px; padding:12px; margin-bottom:12px;
+}
+.card h3{margin:0 0 8px; font-size:13px; letter-spacing:.4px}
+
+/* Gradiente */
+.gradient{
+  position:relative; height:18px; border-radius:9px; overflow:hidden;
+  background:linear-gradient(90deg,#ffd100 0%,#ff8a00 55%,#e42814 100%);
+  border:1px solid #3b3f4f; margin-bottom:8px;
+}
+.gradient .label{position:absolute; top:22px; font-size:12px; color:#fff}
+.gradient .label.left{left:0}
+.gradient .label.right{right:0}
+
+.muted{color:var(--muted); margin:4px 0 0; font-size:12px}
+.tiny{font-size:11px}
+
+.legend-caption{margin-top:8px; line-height:1.35}
+.epoch-glossary{
+  margin:.35rem 0 0; padding:0; display:grid;
+  grid-template-columns:auto 1fr; gap:.15rem .5rem; font-size:12.5px;
+}
+.epoch-glossary dt{font-weight:700; color:#e9edf6}
+.epoch-glossary dd{margin:0; color:#b9bed1}
+
+/* ================= LEGENDA (GLYPHS) ================= */
+.legend{list-style:none; padding:0; margin:10px 0}
+.legend li{display:flex; align-items:center; gap:8px; margin:6px 0; color:#e9edf6; font-size:13px}
+
+/* icone SVG nella legenda (render da JS) */
+.legend li svg{width:16px; height:16px; flex:none; display:inline-block}
+.legend li .swatch{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:18px; height:18px; border-radius:4px;
+}
+
+/* ================= DROPDOWN ================= */
+.select{
+  appearance:none; -webkit-appearance:none; -moz-appearance:none;
+  width:100%; margin-top:6px; padding:8px 10px;
+  border-radius:8px; border:1px solid var(--edge);
+  background:#0f1116; color:#e9edf6; font-size:13px; outline:none;
+}
+.select:focus{border-color:#ff7c00; box-shadow:0 0 0 2px rgba(255,124,0,.18)}
+
+/* ================= CANVAS ================= */
+#canvas-holder{
+  margin-left:calc(var(--side) + var(--gap));
+  padding:var(--canvasPadTop) 16px 16px;
+  min-height:calc(100vh - 32px);
+}
+canvas{display:block; max-width:100%}
+
+/* ================= TOOLTIP ================= */
+.tip{
+  position:fixed; pointer-events:none;
+  background:#ff4a2a; color:#fff;
+  border:1px solid #4e1207; border-left:3px solid #ff4a2a;
+  border-radius:10px; padding:10px 12px; box-shadow:0 10px 28px rgba(0,0,0,.35);
+  max-width:280px; z-index:10; font-size:12.5px; line-height:1.35;
+}
+.tip .name{font-weight:700; margin:0 0 4px}
