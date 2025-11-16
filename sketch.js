@@ -166,9 +166,14 @@ function drawVolcanoes(mapX,mapY,mapW,mapH){
     const glyph=glyphForType(type), col=statusToYellowRed(status);
     const e=String(eruption); col.setAlpha(e.includes('D1')?255:e.includes('D2')?240:e.includes('U')?220:200);
     drawGlyph(pos.x,pos.y,size,glyph,col);
-    volcanoPositions.push({x:pos.x,y:pos.y,size,name,country,location,elevation:Number.isFinite(elevation)?elevation:0,type,status,eruption});
+
+    // Anumero/ID e coord per link alla pagina di dettaglio
+    const id = getVal(row,'Number') || getVal(row,'Volcano Number') || getVal(row,'ID') || '';
+    volcanoPositions.push({x:pos.x,y:pos.y,size,name,country,location,elevation:Number.isFinite(elevation)?elevation:0,type,status,eruption, id, lat, lon});
   }
 }
+
+
 
 // assegna stabilmente un glifo a ciascun Type 
 /*→ glyphForType(): assegna una forma deterministica al Type (riuso coerente).*/
@@ -377,3 +382,21 @@ function glyphSVG(kind,stroke='#ff7c00',fill='#ff7c00'){
     default: return `<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="${fill}" ${st}/></svg>`;
   }
 }
+
+// === click su glifo → pagina di dettaglio ============================
+function mousePressed(){
+  if (!hoveredVolcano) return;
+  const v = hoveredVolcano;
+  const params = new URLSearchParams();
+  if (v.id) params.set('id', v.id);
+  params.set('name', v.name);
+  params.set('country', v.country);
+  params.set('type', v.type);
+  params.set('status', v.status);
+  params.set('eruption', v.eruption);
+  params.set('elev', String(v.elevation));
+  if (Number.isFinite(v.lat)) params.set('lat', v.lat.toFixed(4));
+  if (Number.isFinite(v.lon)) params.set('lon', v.lon.toFixed(4));
+  window.location.href = `volcano.html?${params.toString()}`;
+}
+

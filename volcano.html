@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Volcano Detail</title>
+  <link rel="stylesheet" href="style.css?v=10">
+  <style>
+    .wrap{max-width:920px;margin:40px auto;padding:0 16px}
+    .title{text-align:center;margin-bottom:12px}
+    .subtitle{text-align:center;color:var(--muted);margin-top:0}
+    .panel{background:var(--card);border:1px solid var(--edge);border-radius:12px;padding:20px;margin-bottom:16px}
+    .hero{background:#101218;border:1px solid var(--edge);border-radius:10px;padding:16px;margin-bottom:16px;display:flex;gap:14px;align-items:center}
+    .kv{display:grid;grid-template-columns:160px 1fr;gap:10px 18px;margin:0;padding:0}
+    .kv dt{color:var(--muted)} .kv dd{margin:0}
+    .meter{background:#231a12;border:1px solid #3b2a16;border-radius:10px;padding:10px 12px}
+    .bar{height:16px;border-radius:8px;background:#7a4a12}
+    .foot{color:var(--muted);font-size:12px;text-align:center;margin-top:8px}
+    .back{display:inline-block;margin-top:18px;color:#ff7c00;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="title">Volcano Legend</h1>
+    <p class="subtitle">Information about the selected volcano</p>
+
+    <div class="panel">
+      <div class="hero">
+        <div>
+          <div class="muted tiny">Volcano type</div>
+          <div id="vType" style="font-size:20px;font-weight:600;"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <dl class="kv">
+          <dt>ID:</dt><dd id="vId">—</dd>
+          <dt>Name:</dt><dd id="vName">—</dd>
+          <dt>Country:</dt><dd id="vCountry">—</dd>
+          <dt>Category:</dt><dd id="vCat">—</dd>
+          <dt>Status (epoch):</dt><dd id="vStatus">—</dd>
+          <dt>Last eruption:</dt><dd id="vEru">—</dd>
+          <dt>Coordinates:</dt><dd id="vCoords">—</dd>
+        </dl>
+      </div>
+
+      <div class="panel">
+        <div class="muted tiny" id="elevLabel">Elevation: —</div>
+        <div class="meter" style="margin-top:8px;">
+          <div class="bar" id="elevBar"></div>
+        </div>
+       
+      </div>
+
+      <a class="back" href="index.html">← Back to map</a>
+    </div>
+  </div>
+
+  <script src="volcano.js?v=3"></script>
+</body>
+</html>
